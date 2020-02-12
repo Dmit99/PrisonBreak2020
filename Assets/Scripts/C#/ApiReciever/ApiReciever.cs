@@ -11,11 +11,12 @@ public class ApiReciever : JsonNetwork
         StartCoroutine(base.GetRequest(APILink));
     }
 
-    protected override void ParseJSON(JSONNode jsonString)
+    protected override void ParseJSON(string jsonString)
     {
-        for (int i = 0; i < jsonString["country"].Count; i++)
+        JSONNode jsonOBJ = JSON.Parse(jsonString);
+        for (int i = 0; i < jsonOBJ["country"].Count; i++)
         {
-            Debug.Log((float)jsonString[i]);
+            Debug.Log(jsonOBJ[i]);
         }
     }
 }

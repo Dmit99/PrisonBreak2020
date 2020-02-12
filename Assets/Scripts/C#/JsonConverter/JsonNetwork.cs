@@ -1,15 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-using SimpleJSON;
 
 public abstract class JsonNetwork : MonoBehaviour
 {
 
-    protected virtual void ParseJSON(JSONNode jsonString) 
-    {
-        JSONNode jsonOBJ = JSON.Parse(jsonString);
-    }
+    protected virtual void ParseJSON(string jsonString) { }
 
     /// Used for scaling! 
     protected virtual void RecievedTextureHandler(Texture2D texture) { }
@@ -37,24 +33,8 @@ public abstract class JsonNetwork : MonoBehaviour
             }
             else
             {
-                Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
                 ParseJSON(webRequest.downloadHandler.text);
             }
-        }
-        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uri))
-        {
-            yield return uwr.SendWebRequest();
-
-            if (uwr.isNetworkError || uwr.isHttpError)
-            {
-                Debug.Log(uwr.error);
-            }
-            else
-            {
-                Texture2D myTexture2D = DownloadHandlerTexture.GetContent(uwr);
-                RecievedTextureHandler(myTexture2D);
-            }
-
         }
     }
 }

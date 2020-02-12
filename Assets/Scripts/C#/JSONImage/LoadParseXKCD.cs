@@ -34,21 +34,43 @@ public class LoadParseXKCD : JsonNetwork
 
 
     /// Recieving the json script volume.
-    protected override void ParseJSON(JSONNode jsonStr)
+    protected override void ParseJSON(string jsonStr)
     {
-        base.ParseJSON(jsonStr);
-        string titleURL = jsonStr["title"];
+        JSONNode jsonOBJ = JSON.Parse(jsonStr);
+        string titleURL = jsonOBJ["title"];
+        string imgURL = jsonOBJ["img"];
         GetTitle(titleURL);
+        StartCoroutine(GetImage(imgURL));
     }
 
     protected override void RecievedTextureHandler(Texture2D texture)
     {
-        myRawImage.texture = texture;
     }
 
     /// Getting the title name
     private void GetTitle(string titleURL)
     {
          storyTitle.text = titleURL;
+    }
+
+
+    /// Recieve the Image.
+    private IEnumerator GetImage(string uri)
+    {
+        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uri))
+        {
+            yield return uwr.SendWebRequest();
+
+            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                Debug.Log(uwr.error);
+            }
+            else
+            {
+                Texture2D myTexture2D = DownloadHandlerTexture.GetContent(uwr);
+                myRawImage.texture = myTexture2D;
+            }
+
+        }
     }
 }

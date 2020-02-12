@@ -46,7 +46,7 @@ public abstract class Pickup : MonoBehaviour, IInteractable
     public void Respawn()
     {
         /// Checking if the object is a stone.
-        if(gameObject.name == "Stone")
+        if (gameObject.name == "Stone")
         {
             RemoveInventoryObj();
             transform.position = Camera.main.transform.position + Camera.main.transform.forward;
@@ -55,11 +55,13 @@ public abstract class Pickup : MonoBehaviour, IInteractable
             gameObject.GetComponent<Rigidbody>().AddForce(force);
             Debug.Log("Done!");
         }
-
-        /// Put this gameobject back in the world
-        /// put it here the player is right now.
-        RemoveInventoryObj();
-        transform.position = Camera.main.transform.position + Camera.main.transform.forward;
-        gameObject.SetActive(true);
+        else
+        {
+            /// Put this gameobject back in the world
+            /// put it here the player is right now.
+            RemoveInventoryObj();
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+            gameObject.SetActive(true);
+        }
     }
 }

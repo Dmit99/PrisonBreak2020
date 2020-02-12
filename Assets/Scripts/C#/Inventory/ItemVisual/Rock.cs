@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Rock : Pickup
+﻿public class Rock : Pickup
 {
     /// The visual part of the rock.
     protected override Item CreateItem()

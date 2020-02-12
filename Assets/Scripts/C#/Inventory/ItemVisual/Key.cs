@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Key : Pickup
+﻿public class Key : Pickup
 {
     public int doorID;
 

@@ -4,12 +4,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class PlayerInteraction : MonoBehaviour
 {
     #region variables...
-    private bool inFrontOfDoor;
     private float range = 5f;
 
     [Header("GameObjects")]
-    [SerializeField]
-    private GameObject door;
     [SerializeField]
     private GameObject cofin1;
     [SerializeField]
@@ -92,30 +89,21 @@ public class PlayerInteraction : MonoBehaviour
                     }
                     break;
 
+                case "Door":
+                    Door d = hit.collider.gameObject.GetComponent<Door>();
+                    if(d != null)
+                    {
+                        d.Open();
+                        Inventory.instance.printToConsole();
+                    }
+                    break;
+
                 case "BonusItem":
                     break;
 
                 default:
                     break;
             }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "DoorTrigger")
-        {
-            inFrontOfDoor = true;
-            Debug.Log(inFrontOfDoor);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "DoorTrigger")
-        {
-            inFrontOfDoor = false;
-            Debug.Log(inFrontOfDoor);
         }
     }
 }

@@ -30,9 +30,15 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        if (id == -1 || Inventory.instance.HasKey(id))
+        if (Inventory.instance.HasKey(id))
+        {
+            Debug.Log("Heb wel een sleutel met de id: " + id);
+        }
+
+        if (Inventory.instance.HasKey(id))
         {
             open = !open;
+            Inventory.instance.removeByName("Key");
         }
     }
 

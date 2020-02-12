@@ -82,7 +82,7 @@ public class Inventory : MonoBehaviour
             if(items[i] is AccesItem)
             {
                 AccesItem it = (AccesItem)items[i];
-                if(it.doorId == id)
+                if (it.doorId == id)
                 {
                     return true;
                 }

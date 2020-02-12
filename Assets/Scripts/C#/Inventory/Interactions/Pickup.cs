@@ -1,27 +1,35 @@
 ﻿using UnityEngine;
 
-public class Pickup : MonoBehaviour, IInteractable
+public abstract class Pickup : MonoBehaviour, IInteractable
 {
-    protected Item key;
-    protected Item rock;
-    protected Item gem;
-    public GameObject item;
-
     public string _name;
     public float weight;
-    public Sprite inventoryIcon;
+    public Sprite image;
+    private GameObject inventoryObj;
+    protected abstract Item CreateItem();
+    private Vector3 force;
 
-
-    public virtual void Start()
+    private void Start()
     {
-        
+        InventoryVisual.instance.RegisterPickUpItem(this);
     }
 
-    public void AddToInventory(Item i)
+    public void Action()
     {
-        Inventory.instance.AddItem(i);
-        InventoryVisual.instance.AddUIItem(this);
-        gameObject.SetActive(false);
+        if (Inventory.instance.AddItem(CreateItem()))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public bool isInInventory()
+    {
+        return inventoryObj != null;
+    }
+
+    public void SetInventoryObj(GameObject go)
+    {
+        inventoryObj = go;
     }
 
     public void Delete(GameObject go)
@@ -29,12 +37,31 @@ public class Pickup : MonoBehaviour, IInteractable
         go.gameObject.SetActive(false);
     }
 
+    public void RemoveInventoryObj()
+    {
+        Destroy(inventoryObj);
+        inventoryObj = null;
+    }
+
     public void Respawn()
     {
-        /// Put this gameobject back in the world
-        /// put it here the player is right now.
-
-        gameObject.SetActive(true);
-        transform.position = Camera.main.transform.position + Camera.main.transform.forward; 
+        /// Checking if the object is a stone.
+        if (gameObject.name == "Stone")
+        {
+            RemoveInventoryObj();
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+            gameObject.SetActive(true);
+            force = (Camera.main.transform.forward * 600 + Vector3.up * 100);
+            gameObject.GetComponent<Rigidbody>().AddForce(force);
+            Debug.Log("Done!");
+        }
+        else
+        {
+            /// Put this gameobject back in the world
+            /// put it here the player is right now.
+            RemoveInventoryObj();
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+            gameObject.SetActive(true);
+        }
     }
 }

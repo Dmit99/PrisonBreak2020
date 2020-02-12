@@ -1,20 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Key : Pickup
+﻿public class Key : Pickup
 {
     public int doorID;
 
     /// The visual part of the key.
 
-    public override void Start()
+    protected override Item CreateItem()
     {
-        key = new AccesItem(name: _name, weight: weight, doorId: doorID);
-    }
-
-    public void AddKey()
-    {
-        AddToInventory(key);
+        return new AccesItem(name: _name, weight: weight, doorId: doorID);
     }
 }

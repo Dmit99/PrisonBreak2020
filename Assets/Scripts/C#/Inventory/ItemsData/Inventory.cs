@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -31,13 +30,13 @@ public class Inventory : MonoBehaviour
         currentWeight = 0f;
     }
 
-    public bool AddItem(Item i)
+    public bool AddItem(Item item)
     {
-        Debug.Log("Adding " + i.name);
-        if (currentWeight + i.weight <= maxWeight)
+        if (currentWeight + item.weight <= maxWeight)
         {
-            items.Add(i);
-            currentWeight += i.weight;
+            items.Add(item);
+            InventoryVisual.instance.AddUIItem(item);
+            currentWeight += item.weight;
             return true;
         }
         else return false;
@@ -63,19 +62,26 @@ public class Inventory : MonoBehaviour
         return items.Count;
     }
 
-    public float CheckingCurrentWheight()
-    {
-        return currentWeight;
-    }
-
-    public bool Opens(int door)
+    public void removeByName(string name)
     {
         foreach (Item i in items)
         {
-            if(i is AccesItem)
+            if(i.name == name)
             {
-                AccesItem ai = (AccesItem) i;
-                if (ai.Opens(door))
+                RemoveItem(i);
+                break;
+            }
+        }
+    }
+
+    public bool HasKey(int id)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if(items[i] is AccesItem)
+            {
+                AccesItem it = (AccesItem)items[i];
+                if (it.doorId == id)
                 {
                     return true;
                 }
@@ -85,6 +91,12 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public float CheckingCurrentWheight()
+    {
+        return currentWeight;
+    }
+
+    /// Selecting the stone.
     public bool Selecting()
     {
         foreach (Item i in items)
@@ -96,5 +108,15 @@ public class Inventory : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void printToConsole()
+    {
+        foreach (Item i in items)
+        {
+            Debug.Log(i.name + "--" + i.weight);
+        }
+
+        Debug.Log("Current Weight: " + currentWeight);
     }
 }

@@ -4,14 +4,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class PlayerInteraction : MonoBehaviour
 {
     #region variables...
-    Item key;
-    Item stone;
+    private float range = 5f;
 
-    private RaycastHit hit;
-    private bool inFrontOfDoor;
     [Header("GameObjects")]
-    [SerializeField]
-    private GameObject door;
     [SerializeField]
     private GameObject cofin1;
     [SerializeField]
@@ -21,8 +16,6 @@ public class PlayerInteraction : MonoBehaviour
 
     /// This will be true once the player has a throwable object in he's inventory.
     private bool shootingReady;
-    /// This will be used to turn on or off the player movement script. When interacting with Ui and you need the mouse you can use the ui instead of looking to somewhere else.
-    private bool playercontrolled;
 
 
     [Header("UI elements")]
@@ -34,163 +27,102 @@ public class PlayerInteraction : MonoBehaviour
     [Tooltip("Insert the Inventory in here.")]
     private GameObject uiInventory;
 
-    [SerializeField]
-    [Tooltip("Insert the content of the scrollview in here.")]
-    private GameObject contentfitter;
-
     #endregion
 
     private void Start()
     {
         information.text = "";
         shootingReady = false;
-        playercontrolled = true;
-        uiInventory.SetActive(!playercontrolled);
+        uiInventory.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        if (playercontrolled)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            this.gameObject.GetComponent<FirstPersonController>().enabled = true;
-            UserInteraction();
-            if (!shootingReady)
-            {
-                UserSelecting();
-            }
-            if (shootingReady)
-            {
-                Throwing();
-            }
-        }
-        else if(!playercontrolled)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            this.gameObject.GetComponent<FirstPersonController>().enabled = false;
+        if (Input.GetButtonDown("Action"))
+        { 
+            Interact();
         }
 
-        EnableInventory();
-    }
-
-    private void EnableInventory()
-    {
-        /// When pressing I you open up your inventory.
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetButtonDown("Inventory"))
         {
-            playercontrolled = !playercontrolled;
-            uiInventory.SetActive(!playercontrolled);
+            SetInventoryVisible(!uiInventory.gameObject.activeSelf);
         }
 
-        ///If the inventory is open you could also press escape to close it.
-        if(Input.GetKeyDown(KeyCode.Escape) && !playercontrolled)
+        /// If the inventory is open you can also use the Escape button.
+        if (uiInventory.gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
-            playercontrolled = !playercontrolled;
-            uiInventory.SetActive(!playercontrolled);
+            SetInventoryVisible(!uiInventory.gameObject.activeSelf);
+        }
+
+        if (Input.GetButtonDown("ThrowRock"))
+        {
+            ThrowingRock();
         }
     }
 
-    private void UserSelecting()
+    public void SetInventoryVisible(bool value)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (Inventory.instance.Selecting())
-            {
-                Debug.Log("There is a stone in the inventory.");
-                if (Inventory.instance.Selecting())
-                {
-                    shootingReady = true;
-                }
-            }
-            else 
-            { 
-                Debug.Log("I have nothing to throw....");
-                shootingReady = false;
-            }
-        }
+        uiInventory.SetActive(value);
+        GetComponent<FirstPersonController>().enabled = !value;
+        Cursor.visible = value;
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
-    private void Throwing()
+    public void ThrowingRock()
     {
-        if(Input.GetButtonDown("Fire1"))
-        {
-            Inventory.instance.RemoveItem(item: stone);
-            Instantiate(rock, fireInstance.transform.position, fireInstance.transform.rotation);
-            shootingReady = false;
-        }
-    }
+        /// Removing the stone from the inventory.
+        Inventory.instance.removeByName("Stone");
 
-    private void UserInteraction()
-    {
+        /// Throwing the stone.
         
-        if (Input.GetButtonDown("Fire1"))
+    }
+
+    private void Interact()
+    {
+        Ray r = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        RaycastHit hit;
+
+        int ignorePlayer = ~LayerMask.GetMask("Player");
+
+        if(Physics.Raycast(ray: r, hitInfo: out hit, maxDistance: range, layerMask: ignorePlayer))
         {
-            int layermask = ~LayerMask.GetMask("Player");
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask: layermask))
+            Debug.Log(hit.collider.gameObject.name);
+            switch (hit.collider.gameObject.name)
             {
-                switch (hit.collider.name)
-                {
-                    /// If you hit the key.
-                    case "Key":
-                        var hittedObjectKey = hit.collider.gameObject.GetComponent<Key>();
-                        information.text = "You have found the " + hittedObjectKey.name + " key. It wheights: " + hittedObjectKey.weight + " kilo's." + "\nYou have now " + Inventory.instance.Count() + " items in your inventory with a total wheight of: " + Inventory.instance.CheckingCurrentWheight();
-                        hittedObjectKey.AddKey();
-                        break;
+                case "Key":
+                    Key k = hit.collider.gameObject.GetComponent<Key>();
+                    if(k != null)
+                    {
+                        k.Action();
+                        Inventory.instance.printToConsole();
+                    }
+                    break;
 
-                    /// If you hit the door.
-                    case "Door":
-                        int objectDoorNumber = hit.collider.gameObject.GetComponent<DoorNumber>().doorNumber;
+                case "Stone":
+                    Rock ro = hit.collider.gameObject.GetComponent<Rock>();
+                    if(ro != null)
+                    { 
+                        ro.Action();
+                        Inventory.instance.printToConsole();
+                    }
+                    break;
 
-                        if (Inventory.instance.Opens(door: objectDoorNumber))
-                        {
-                            if (Inventory.instance.RemoveItem(key))
-                            {
-                                door.GetComponent<Animator>().SetTrigger("DoorOpening");
-                                information.text = ("The " + key.name + " has been used and removed from your inventory.");
-                            }
-                        }
-                        else information.text = "The key you have /Should have isn't the right key for this door.";
-                        break;
+                case "Door":
+                    Door d = hit.collider.gameObject.GetComponent<Door>();
+                    if(d != null)
+                    {
+                        d.Open();
+                        Inventory.instance.printToConsole();
+                    }
+                    break;
 
-                    /// If you hit the Cofin.
-                    case "Cofin1":
-                        cofin1.GetComponentInChildren<Animator>().SetTrigger("Opening");
-                        cofin1.GetComponent<BoxCollider>().enabled = false;
-                        information.text = "You have found a pice for you boat!";
-                        break;
+                case "BonusItem":
+                    break;
 
-                    /// If you hit one of the rocks.
-                    case "StoneBrick":
-                        var hittedObjectStone = hit.collider.gameObject.GetComponent<Rock>();
-                        information.text = "You have found a " + hittedObjectStone._name + "And it weights " + hittedObjectStone.weight;
-                        hittedObjectStone.AddRock();
-                        break;
-
-                    default:
-                        Debug.Log(hit.collider.name);
-                        break;
-                }
+                default:
+                    break;
             }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "DoorTrigger")
-        {
-            inFrontOfDoor = true;
-            Debug.Log(inFrontOfDoor);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "DoorTrigger")
-        {
-            inFrontOfDoor = false;
-            Debug.Log(inFrontOfDoor);
         }
     }
 }

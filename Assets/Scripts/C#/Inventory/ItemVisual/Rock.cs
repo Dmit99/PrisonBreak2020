@@ -1,20 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Rock : Pickup
+﻿public class Rock : Pickup
 {
     /// The visual part of the rock.
-
-    public override void Start()
+    protected override Item CreateItem()
     {
-        rock = new ThrowableItem(name: name, weight: weight);
-        _name = "ThrowableRock";
-        item = this.gameObject;
-    }
-
-    public void AddRock() 
-    { 
-        AddToInventory(rock);
+        return new ThrowableItem(name: name, weight: weight);
     }
 }

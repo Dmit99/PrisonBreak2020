@@ -91,7 +91,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12.25
+  m_fontSize: 0
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -165,8 +165,9 @@ GameObject:
   m_Component:
   - component: {fileID: 331898020243839984}
   - component: {fileID: 331898020243839985}
+  - component: {fileID: 2456158421137048902}
   m_Layer: 5
-  m_Name: Item
+  m_Name: UIItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,8 +206,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71504796812f07d46b98dcb95e8e4a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 0}
-  itemName: {fileID: 0}
+  itemImage: {fileID: 331898021558847422}
+  itemName: {fileID: 331898020152947907}
+--- !u!222 &2456158421137048902
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331898020243839991}
+  m_CullTransparentMesh: 0
 --- !u!1 &331898021558847420
 GameObject:
   m_ObjectHideFlags: 0

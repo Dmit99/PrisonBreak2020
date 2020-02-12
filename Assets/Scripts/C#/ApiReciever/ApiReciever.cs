@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using SimpleJSON;
+
 
 public class ApiReciever : JsonNetwork
 {
@@ -6,30 +8,14 @@ public class ApiReciever : JsonNetwork
 
     public override void Start()
     {
-        StartCoroutine(GetRequest(APILink));
+        StartCoroutine(base.GetRequest(APILink));
     }
 
-    //IEnumerator GetRequest(string uri)
-    //{
-    //    using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-    //    {
-    //        // Request and wait for the desired page.
-    //        yield return webRequest.SendWebRequest();
-
-    //        if (webRequest.isNetworkError)
-    //        {
-    //            Debug.Log(": Error: " + webRequest.error);
-    //        }
-    //        else
-    //        {
-    //            JSONNode jsonObj = JSON.Parse(webRequest.downloadHandler.text);
-
-    //            for (int i = 0; i < jsonObj["country"].Count; i++)
-    //            {
-    //                Debug.Log((float)jsonObj[i]);
-    //            }
-
-    //        }
-    //    }
-    //}
+    protected override void ParseJSON(JSONNode jsonString)
+    {
+        for (int i = 0; i < jsonString["country"].Count; i++)
+        {
+            Debug.Log((float)jsonString[i]);
+        }
+    }
 }

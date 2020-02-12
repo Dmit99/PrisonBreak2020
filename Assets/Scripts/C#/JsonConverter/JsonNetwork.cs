@@ -3,8 +3,17 @@ using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 
-public class JsonNetwork : MonoBehaviour
+public abstract class JsonNetwork : MonoBehaviour
 {
+
+    protected virtual void ParseJSON(JSONNode jsonString) 
+    {
+        JSONNode jsonOBJ = JSON.Parse(jsonString);
+    }
+
+    /// Used for scaling! 
+    protected virtual void RecievedTextureHandler(Texture2D texture) { }
+
     public JsonNetwork() 
     {
         
@@ -15,7 +24,7 @@ public class JsonNetwork : MonoBehaviour
         
     }
 
-    public IEnumerator GetRequest(string uri)
+    protected virtual IEnumerator GetRequest(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
@@ -29,15 +38,23 @@ public class JsonNetwork : MonoBehaviour
             else
             {
                 Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-
-                JSONNode jsonObj = JSON.Parse(webRequest.downloadHandler.text);
-
-                for (int i = 0; i < jsonObj["country"].Count; i++)
-                {
-                    Debug.Log((float)jsonObj[i]);
-                }
-
+                ParseJSON(webRequest.downloadHandler.text);
             }
+        }
+        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uri))
+        {
+            yield return uwr.SendWebRequest();
+
+            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                Debug.Log(uwr.error);
+            }
+            else
+            {
+                Texture2D myTexture2D = DownloadHandlerTexture.GetContent(uwr);
+                RecievedTextureHandler(myTexture2D);
+            }
+
         }
     }
 }

@@ -5,35 +5,36 @@ using SimpleJSON;
 using UnityEngine.UI;
 using TMPro;
 
-public class LoadParseXKCD : MonoBehaviour
+public class LoadParseXKCD : JsonNetwork
 {
     [SerializeField] [Tooltip("Insert the Api link in here")] private string APILink;
     [SerializeField] private RawImage myRawImage;
     [SerializeField] private TextMeshProUGUI storyTitle;
 
-    void Start()
+    public override void Start()
     {
         StartCoroutine(GetRequest(APILink));
     }
 
-    IEnumerator GetRequest(string apiURL)
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(apiURL))
-        {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
+    //IEnumerator GetRequest(string apiURL)
+    //{
+    //    using (UnityWebRequest webRequest = UnityWebRequest.Get(apiURL))
+    //    {
+    //        // Request and wait for the desired page.
+    //        yield return webRequest.SendWebRequest();
 
-            if (webRequest.isNetworkError)
-            {
-                Debug.Log(": Error: " + webRequest.error);
-            }
-            else
-            { 
-                /// Recieved webrequest and parsing it.
-                parseJSON(webRequest.downloadHandler.text);
-            }
-        }
-    }
+    //        if (webRequest.isNetworkError)
+    //        {
+    //            Debug.Log(": Error: " + webRequest.error);
+    //        }
+    //        else
+    //        { 
+    //            /// Recieved webrequest and parsing it.
+    //            parseJSON(webRequest.downloadHandler.text);
+    //        }
+    //    }
+    //}
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

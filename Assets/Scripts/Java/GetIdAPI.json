@@ -1,0 +1,17 @@
+{
+
+    "Student" : 
+    {
+        "Name" : 
+        {
+            "First Name" : "Dmitri"
+            "Last Name" : "Jacobs"
+        }
+        "Place" : "Eindhoven",
+        "Age" : 20,
+        "Autism" : true,
+        "Virgin" : false,
+        "Will to live" : true,
+        "Familly at home" : ["Mom", "Steph_Dad", "Steph_Brother", "Steph_Siser"]
+    }
+}

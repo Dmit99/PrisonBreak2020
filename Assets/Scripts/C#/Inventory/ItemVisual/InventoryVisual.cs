@@ -7,12 +7,12 @@ using TMPro;
 public class InventoryVisual : MonoBehaviour
 {
     [SerializeField]
-    private Transform UIItemPrefab;
+    private GameObject UIItemPrefab;
 
     [SerializeField]
     private GameObject content;
 
-    public List<Pickup> uiItems;
+    public Dictionary<string, Pickup> uiItems;
 
     #region Singleton...
     public static InventoryVisual instance;
@@ -29,36 +29,34 @@ public class InventoryVisual : MonoBehaviour
             Destroy(this);
         }
 
-        uiItems = new List<Pickup>();
+        uiItems = new Dictionary<string, Pickup>();
     }
     #endregion
 
-    public void AddUIItem(Pickup p)
+    public void RegisterPickUpItem(Pickup i)
     {
-        if (!uiItems.Contains(p))
+        if (!uiItems.ContainsKey(i.name))
         {
-            Transform t = Instantiate(UIItemPrefab, transform);
-            InventoryUiItem i = t.GetComponent<InventoryUiItem>();
-            if(i != null)
-            {
-                i.RegisterPickup(p.item.name, p.inventoryIcon);
-                uiItems.Add(p);
-                t.parent = content.transform;
-            }
+            uiItems.Add(i.name, i);
+        }
+    }
+
+    public void AddUIItem(Item i)
+    {
+        if (!uiItems[i.name].isInInventory())
+        {
+            GameObject go = Instantiate(UIItemPrefab, content.transform);
+            go.GetComponentInChildren<Image>().sprite = uiItems[i.name].image;
+            go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = i.name;
+            uiItems[i.name].SetInventoryObj(go);
         }
     }
 
     public void RemoveUIItem(Item item)
     {
-        for (int i = 0; i < uiItems.Count; i++)
+        if (uiItems.ContainsKey(item.name))
         {
-            Pickup p = uiItems[i];
-            if(p.item.name == item.name)
-            {
-                /// Deze moeten we verwijderen
-                uiItems.Remove(p);
-                break;
-            }
+            uiItems[item.name].Respawn();
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public class AccesItem : Item
 {
     /// Properties
@@ -12,10 +15,4 @@ public class AccesItem : Item
     }
 
     /// Methods
-    
-    /// Boolean functien that calls if its true or false when using it on a door.
-    public bool Opens(int door)
-    {
-        return doorId == door;
-    }
 }

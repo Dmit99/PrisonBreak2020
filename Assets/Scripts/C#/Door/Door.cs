@@ -32,11 +32,6 @@ public class Door : MonoBehaviour
     {
         if (Inventory.instance.HasKey(id))
         {
-            Debug.Log("Heb wel een sleutel met de id: " + id);
-        }
-
-        if (Inventory.instance.HasKey(id))
-        {
             open = !open;
             Inventory.instance.removeByName("Key");
         }

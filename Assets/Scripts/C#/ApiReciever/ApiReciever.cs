@@ -1,41 +1,21 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.Networking;
+﻿using UnityEngine;
 using SimpleJSON;
 
-public class ApiReciever : MonoBehaviour
+
+public class ApiReciever : JsonNetwork
 {
     [SerializeField] [Tooltip("Insert the Api link in here")] private string APILink;
-    /// API link: http://www.moonmoonmoonmoon.com/api/marks
 
-    void Start()
+    public override void Start()
     {
-        StartCoroutine(GetRequest(APILink));
+        StartCoroutine(base.GetRequest(APILink));
     }
 
-    IEnumerator GetRequest(string uri)
+    protected override void ParseJSON(JSONNode jsonString)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        for (int i = 0; i < jsonString["country"].Count; i++)
         {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.isNetworkError)
-            {
-                Debug.Log(": Error: " + webRequest.error);
-            }
-            else
-            {
-                Debug.Log(":\nReceived: " + webRequest.downloadHandler.text);
-
-                JSONNode jsonObj = JSON.Parse(webRequest.downloadHandler.text);
-
-                for (int i = 0; i < jsonObj["country"].Count; i++)
-                {
-                    Debug.Log((float)jsonObj[i]);
-                }
-
-            }
+            Debug.Log((float)jsonString[i]);
         }
     }
 }

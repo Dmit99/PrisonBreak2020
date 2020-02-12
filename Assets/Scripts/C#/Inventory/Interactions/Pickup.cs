@@ -7,6 +7,7 @@ public abstract class Pickup : MonoBehaviour, IInteractable
     public Sprite image;
     private GameObject inventoryObj;
     protected abstract Item CreateItem();
+    private Vector3 force;
 
     private void Start()
     {
@@ -44,10 +45,23 @@ public abstract class Pickup : MonoBehaviour, IInteractable
 
     public void Respawn()
     {
-        /// Put this gameobject back in the world
-        /// put it here the player is right now.
-        RemoveInventoryObj();
-        transform.position = Camera.main.transform.position + Camera.main.transform.forward;
-        gameObject.SetActive(true);
+        /// Checking if the object is a stone.
+        if (gameObject.name == "Stone")
+        {
+            RemoveInventoryObj();
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+            gameObject.SetActive(true);
+            force = (Camera.main.transform.forward * 600 + Vector3.up * 100);
+            gameObject.GetComponent<Rigidbody>().AddForce(force);
+            Debug.Log("Done!");
+        }
+        else
+        {
+            /// Put this gameobject back in the world
+            /// put it here the player is right now.
+            RemoveInventoryObj();
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+            gameObject.SetActive(true);
+        }
     }
 }

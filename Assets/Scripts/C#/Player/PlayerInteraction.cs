@@ -54,6 +54,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             SetInventoryVisible(!uiInventory.gameObject.activeSelf);
         }
+
+        if (Input.GetButtonDown("ThrowRock"))
+        {
+            ThrowingRock();
+        }
     }
 
     public void SetInventoryVisible(bool value)
@@ -64,6 +69,14 @@ public class PlayerInteraction : MonoBehaviour
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
+    public void ThrowingRock()
+    {
+        /// Removing the stone from the inventory.
+        Inventory.instance.removeByName("Stone");
+
+        /// Throwing the stone.
+        
+    }
 
     private void Interact()
     {

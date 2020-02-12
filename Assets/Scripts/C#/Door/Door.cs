@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Door : MonoBehaviour
 {
@@ -30,11 +28,6 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        if (Inventory.instance.HasKey(id))
-        {
-            Debug.Log("Heb wel een sleutel met de id: " + id);
-        }
-
         if (Inventory.instance.HasKey(id))
         {
             open = !open;

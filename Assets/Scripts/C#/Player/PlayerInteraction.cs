@@ -37,6 +37,7 @@ public class PlayerInteraction : MonoBehaviour
         information.text = "";
         shootingReady = false;
         uiInventory.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -44,12 +45,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetButtonDown("Action"))
         { 
             Interact();
-            Debug.Log("Action is active!");
         }
 
         if (Input.GetButtonDown("Inventory"))
         {
-            SetInventoryVisible(!InventoryVisual.instance.gameObject.activeSelf);
+            SetInventoryVisible(!uiInventory.gameObject.activeSelf);
         }
     }
 
@@ -57,6 +57,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         uiInventory.SetActive(value);
         GetComponent<FirstPersonController>().enabled = !value;
+        Cursor.visible = value;
         Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
     }
 

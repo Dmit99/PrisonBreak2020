@@ -281,7 +281,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17086
+  m_Name: pb_Mesh33108
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2987,7 +2987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.2211118, y: 0}
+  m_AnchoredPosition: {x: 1.3568313, y: 0}
   m_SizeDelta: {x: -133, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &932357594589008432
@@ -3089,7 +3089,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 932357593465841774}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.98938054
+  m_Size: 0.9893032
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

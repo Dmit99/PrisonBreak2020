@@ -33,11 +33,6 @@ public class InventoryVisual : MonoBehaviour
     }
     #endregion
 
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
-
     public void RegisterPickUpItem(Pickup i)
     {
         if (!uiItems.ContainsKey(i.name))

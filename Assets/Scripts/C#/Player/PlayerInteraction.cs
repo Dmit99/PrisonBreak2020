@@ -48,6 +48,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             SetInventoryVisible(!uiInventory.gameObject.activeSelf);
         }
+
+        /// If the inventory is open you can also use the Escape button.
+        if (uiInventory.gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetInventoryVisible(!uiInventory.gameObject.activeSelf);
+        }
     }
 
     public void SetInventoryVisible(bool value)

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : Pickup
+public class Bonus : Pickup
 {
-    /// The visual part of the rock.
+    public int points;
+
     protected override Item CreateItem()
     {
-        return new ThrowableItem(name: name, weight: weight);
+        return new BonusItem(name, weight, points);
     }
 }

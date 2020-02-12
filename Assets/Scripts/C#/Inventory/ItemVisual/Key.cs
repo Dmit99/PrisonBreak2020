@@ -8,13 +8,8 @@ public class Key : Pickup
 
     /// The visual part of the key.
 
-    public override void Start()
+    protected override Item CreateItem()
     {
-        key = new AccesItem(name: _name, weight: weight, doorId: doorID);
-    }
-
-    public void AddKey()
-    {
-        AddToInventory(key);
+        return new AccesItem(name: _name, weight: weight, doorId: doorID);
     }
 }

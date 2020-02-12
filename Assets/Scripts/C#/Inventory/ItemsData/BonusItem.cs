@@ -1,4 +1,8 @@
-﻿public class BonusItem : Item
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BonusItem : Item
 {
     /// Properties.
     public float points;

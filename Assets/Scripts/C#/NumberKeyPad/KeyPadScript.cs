@@ -4,10 +4,14 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
-public class KeyPadScript : MonoBehaviour
+public class KeyPadScript : JsonNetwork
 {
     [SerializeField] private List<GameObject> buttons = new List<GameObject>();
     private int buttonsAvailable;
+    private TextMeshProUGUI screenDisplay;
+    private string oldNumber;
+    private string googleAuthNumber;
+    DoorAPI secondDoor;
 
     public KeyPadScript()
     {
@@ -19,15 +23,22 @@ public class KeyPadScript : MonoBehaviour
     /// </summary>
     public void Starting()
     {
+        oldNumber = "";
+        googleAuthNumber = "";
+        secondDoor = GameObject.Find("Door2(API)").GetComponent<DoorAPI>();
+
         /// buttonsAvailable is the amount of buttons on the keypad. This must be hardcoded because the game has to find the buttons first and needs to know how many buttons there are.
         buttonsAvailable = 10;
-        
         for (int i = 0; i < buttonsAvailable; i++)
         {
             buttons.Add(GameObject.Find(i.ToString()));
         }
 
         UpdateTextOnButtons();
+
+        /// Finding the screen.
+        screenDisplay = GameObject.Find("Screen").GetComponentInChildren<TextMeshProUGUI>();
+        screenDisplay.text = "";
     }
 
     /// <summary>
@@ -59,4 +70,39 @@ public class KeyPadScript : MonoBehaviour
             item.GetComponentInChildren<TextMeshProUGUI>().text = item.name;
         }
     }
+
+
+    public void InsertNumber(string recievedNumber)
+    {
+        oldNumber += recievedNumber;
+        UpdateScreenDisplay(oldNumber);
+    }
+
+    private void UpdateScreenDisplay(string insertedNumber)
+    {
+        screenDisplay.text = insertedNumber;
+    }
+
+    /// <summary>
+    /// Checking if the number is the same number as on your phone.
+    /// </summary>
+    public void NumberCorrectChecker()
+    {
+        googleAuthNumber = oldNumber;
+        if (googleAuthNumber != "")
+        {
+           StartCoroutine(GetRequest("https://www.authenticatorapi.com/Validate.aspx?Pin=" + googleAuthNumber + "&SecretCode=342627CYKA"));
+        }
+        oldNumber = "";
+        UpdateScreenDisplay(oldNumber);
+    }
+
+
+    /// When the Json is parsed it will tryparse the string in a true or false and that will be recieved in the OpenDoorMethod.
+    protected override void ParseJSON(string jsonString)
+    {
+        secondDoor.openDoor = jsonString;
+    }
+
+
 }

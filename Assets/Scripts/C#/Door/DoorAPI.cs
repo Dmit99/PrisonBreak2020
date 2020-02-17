@@ -1,51 +1,23 @@
 ﻿using UnityEngine;
 
-public class DoorAPI : JsonNetwork
+public class DoorAPI : MonoBehaviour
 {
-    #region GoogleAuthenticator stuff
-    private string GoogleAuthNumber;
-    public bool GoogleEnterPressed;
-    #endregion
-
-    #region Door stuff
-    private GameObject door;
     private float initialRotation;
-    #endregion
+    public string openDoor;
 
-
-    public override void Start()
+    public void Start()
     {
         initialRotation = transform.rotation.eulerAngles.y;
-        door = gameObject;
     }
-
     private void Update()
     {
-        /// If the authenticator number has been pressed and the boolean is true...
-        if(GoogleAuthNumber != null && GoogleEnterPressed)
+        if (openDoor == "True" && transform.rotation.eulerAngles.y < initialRotation + 80)
         {
-            StartCoroutine(GetRequest("https://www.authenticatorapi.com/Validate.aspx?Pin=" + GoogleAuthNumber + "& SecretCode= 342627CYKA"));
-            GoogleEnterPressed = false;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, initialRotation + 80, 0), 5);
         }
-    }
-
-    /// When the Json is parsed it will tryparse the string in a true or false and that will be recieved in the OpenDoorMethod.
-    protected override void ParseJSON(string jsonString)
-    {
-        OpenDoor(bool.TryParse(jsonString, out _));
-    }
-
-
-    /// Rotates the door to "Open" with the result recieved by another method.
-    private void OpenDoor(bool open)
-    {
-        if (open && transform.rotation.eulerAngles.y < initialRotation + 80)
+        else if (openDoor == "False" && transform.rotation.eulerAngles.y > initialRotation)
         {
-            door.transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, initialRotation + 80, 0), 5);
-        }
-        else if (!open && transform.rotation.eulerAngles.y > initialRotation)
-        {
-            door.transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, initialRotation, 0), 5);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, initialRotation, 0), 5);
         }
     }
 }

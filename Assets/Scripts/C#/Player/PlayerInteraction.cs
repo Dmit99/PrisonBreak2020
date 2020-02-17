@@ -62,11 +62,6 @@ public class PlayerInteraction : KeyPadScript
         {
             ThrowingRock();
         }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ChangeNumberLayout();
-        }
     }
 
     public void SetInventoryVisible(bool value)
@@ -127,6 +122,62 @@ public class PlayerInteraction : KeyPadScript
 
                 case "BonusItem":
                     break;
+
+                #region KeyPadNumbers
+                case "1":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "2":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "3":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "4":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "5":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "6":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "7":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "8":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "9":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "0":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "Enter":
+                    NumberCorrectChecker();
+                    break;
+                #endregion
 
                 default:
                     break;

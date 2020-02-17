@@ -53,7 +53,6 @@ public abstract class Pickup : MonoBehaviour, IInteractable
             gameObject.SetActive(true);
             force = (Camera.main.transform.forward * 600 + Vector3.up * 100);
             gameObject.GetComponent<Rigidbody>().AddForce(force);
-            Debug.Log("Done!");
         }
         else
         {

@@ -1,0 +1,17 @@
+GoogleAuthenticator:
+
+http://authenticatorapi.com/pair.aspx?AppName=PrisonBreak2020&AppInfo=Dmitri_The_Prisoner&SecretCode=342627CYKA
+
+My random QR code number is at the end of the link.
+
+Checking code:
+https://www.authenticatorapi.com/Validate.aspx?Pin=035881&SecretCode=342627CYKA
+
+SecretCode on this link must be the same as the link above at the end.
+The pin is the number you press in.
+
+If the number you pressed is the same as google authenticator you get a return true. Else a false.
+
+
+
+https://www.authenticatorapi.com/Validate.aspx?Pin=101418&SecretCode= 342627CYKA

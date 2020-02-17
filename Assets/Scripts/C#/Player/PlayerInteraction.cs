@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityStandardAssets.Characters.FirstPerson;
-public class PlayerInteraction : MonoBehaviour
+
+public class PlayerInteraction : KeyPadScript
 {
     #region variables...
     private float range = 5f;
@@ -31,6 +32,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Start()
     {
+        Starting();
+
         information.text = "";
         shootingReady = false;
         uiInventory.SetActive(false);
@@ -58,6 +61,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetButtonDown("ThrowRock"))
         {
             ThrowingRock();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ChangeNumberLayout();
         }
     }
 

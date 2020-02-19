@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.29649642, g: 0.24468085, b: 0.22919765, a: 1}
+  m_IndirectSpecularColor: {r: 0.45133454, g: 0.5009474, b: 0.572973, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3712,7 +3712,7 @@ GameObject:
   - component: {fileID: 77907474}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -16388,7 +16388,7 @@ GameObject:
   - component: {fileID: 297427770}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -17169,7 +17169,7 @@ GameObject:
   - component: {fileID: 311238945}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -28511,7 +28511,7 @@ GameObject:
   - component: {fileID: 390603993}
   m_Layer: 0
   m_Name: Floor_ground
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -31776,7 +31776,7 @@ GameObject:
   - component: {fileID: 466553330}
   m_Layer: 0
   m_Name: Floor_left
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -33834,7 +33834,7 @@ GameObject:
   - component: {fileID: 475647850}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -39369,6 +39369,22 @@ PrefabInstance:
       propertyPath: m_JumpSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_FootstepSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a2dbdb745dfb80b468bc456bdce06426, type: 3}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_FootstepSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: aad79537ca136294bab58c569ad0dd38, type: 3}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_JumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5caf1c6a72d303f40ac28984be0bee8c, type: 3}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_LandSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 53ce3dc3849996a45b42a325489d6355, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
 --- !u!1 &578707310 stripped
@@ -40426,7 +40442,7 @@ GameObject:
   - component: {fileID: 586483313}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -45954,17 +45970,9 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_IsSelectable: 1
-  m_SelectedFaces: 05000000
-  m_SelectedEdges:
-  - a: 20
-    b: 21
-  - a: 22
-    b: 20
-  - a: 21
-    b: 23
-  - a: 23
-    b: 22
-  m_SelectedVertices: 14000000150000001600000017000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!23 &685840475
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47305,7 +47313,7 @@ GameObject:
   - component: {fileID: 714522059}
   - component: {fileID: 714522058}
   m_Layer: 0
-  m_Name: BackWall
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47571,7 +47579,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 30917b55f1463164f99a990b79cc8829, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -52276,7 +52284,7 @@ GameObject:
   - component: {fileID: 792777216}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -56853,7 +56861,7 @@ GameObject:
   - component: {fileID: 871922761}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
@@ -60892,7 +60900,7 @@ GameObject:
   - component: {fileID: 949772782}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -62849,7 +62857,7 @@ GameObject:
   - component: {fileID: 967537872}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -68878,7 +68886,7 @@ GameObject:
   - component: {fileID: 1081258425}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -80181,7 +80189,7 @@ GameObject:
   - component: {fileID: 1278594472}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -81024,7 +81032,7 @@ GameObject:
   - component: {fileID: 1288749938}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -83574,7 +83582,7 @@ GameObject:
   - component: {fileID: 1324470607}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -90815,7 +90823,7 @@ GameObject:
   - component: {fileID: 1407289780}
   m_Layer: 0
   m_Name: Floor_middle
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96973,7 +96981,7 @@ GameObject:
   - component: {fileID: 1507341260}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -99452,7 +99460,7 @@ GameObject:
   - component: {fileID: 1552121585}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -105465,7 +105473,7 @@ GameObject:
   - component: {fileID: 1662496339}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -109259,7 +109267,7 @@ GameObject:
   - component: {fileID: 1719908757}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -111027,7 +111035,7 @@ GameObject:
   - component: {fileID: 1747107524}
   m_Layer: 0
   m_Name: Floor_right
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -113259,6 +113267,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 384270397}
     m_Modifications:
+    - target: {fileID: 1587861219137812736, guid: 29a88df8376f9ea4ca95f320086940ec,
+        type: 3}
+      propertyPath: audios
+      value: 
+      objectReference: {fileID: 1957920999}
+    - target: {fileID: 1587861219137812736, guid: 29a88df8376f9ea4ca95f320086940ec,
+        type: 3}
+      propertyPath: plastichit
+      value: 
+      objectReference: {fileID: 8300000, guid: a8bc37677cce0064780d43fc5fa2ec87, type: 3}
+    - target: {fileID: 1587861219137812736, guid: 29a88df8376f9ea4ca95f320086940ec,
+        type: 3}
+      propertyPath: groundhit
+      value: 
+      objectReference: {fileID: 8300000, guid: 16363fa7a51aa784d93259f165d13bee, type: 3}
+    - target: {fileID: 1587861219137812736, guid: 29a88df8376f9ea4ca95f320086940ec,
+        type: 3}
+      propertyPath: wallhit
+      value: 
+      objectReference: {fileID: 8300000, guid: d486c9af1e04cd64c854631bcb0d4ad1, type: 3}
     - target: {fileID: 7533858913415232335, guid: 29a88df8376f9ea4ca95f320086940ec,
         type: 3}
       propertyPath: m_Mesh
@@ -113284,6 +113312,12 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1295264045}
+    - target: {fileID: 7533858913415232338, guid: 29a88df8376f9ea4ca95f320086940ec,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: e38c2e3392bef1344b326bcc29777735,
+        type: 2}
     - target: {fileID: 7533858914278993331, guid: 29a88df8376f9ea4ca95f320086940ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -114550,7 +114584,7 @@ GameObject:
   - component: {fileID: 1851099739}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -117900,7 +117934,7 @@ GameObject:
   - component: {fileID: 1928724464}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -119505,6 +119539,108 @@ Transform:
   m_Father: {fileID: 1308329672}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1957920998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7533858913415232337, guid: 29a88df8376f9ea4ca95f320086940ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1802652779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1957920999
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957920998}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1958366569
 GameObject:
   m_ObjectHideFlags: 0
@@ -126204,7 +126340,7 @@ GameObject:
   - component: {fileID: 2106132497}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -128905,7 +129041,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000031611414, y: 0}
+  m_AnchoredPosition: {x: 0.00085025356, y: 0}
   m_SizeDelta: {x: -133, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &932357594589008432

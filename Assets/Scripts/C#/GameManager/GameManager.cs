@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using gamehelper;
 
 public class GameManager : GameManagerHelper
 {
     private RawImage qRcodeImage;
-
+    GameManagerHelper gamehelper = new GameManagerHelper();
+ 
     #region Singleton...
     public static GameManager instance;
     private void Awake()
@@ -24,7 +26,6 @@ public class GameManager : GameManagerHelper
     protected override void Start()
     {
         qRcodeImage = GameObject.Find("WallWithQRCode").GetComponentInChildren<Canvas>().GetComponentInChildren<RawImage>();
-
         base.Start();
 
         /// Getting QR code image.

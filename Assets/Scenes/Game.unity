@@ -52,7 +52,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 0
+    m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
@@ -128655,7 +128655,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.31637198, y: 0}
+  m_AnchoredPosition: {x: -0.0000033843685, y: 0}
   m_SizeDelta: {x: -133, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &932357594589008432
@@ -128757,7 +128757,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 932357593465841774}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9484957
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -1,0 +1,6 @@
+http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=937101FD24AE2BD620900E4A17A7EDCE&steamid=76561197984713986&name%5B0%5D=total_time_played
+
+
+Mijn api key: 937101FD24AE2BD620900E4A17A7EDCE
+CSGO game id: 730.
+steamid: de nummer van je account.

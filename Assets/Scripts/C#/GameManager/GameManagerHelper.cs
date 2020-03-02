@@ -46,6 +46,7 @@ namespace gamehelper
                 OpenGate = false;
             }
 
+            /// When the lights of the jail are on.
             if (lightsOn)
             {
                 for (int i = 0; i < 9; i++)
@@ -94,7 +95,6 @@ namespace gamehelper
                 }
             }
         }
-
 
         IEnumerator PunchAlarm()
         {

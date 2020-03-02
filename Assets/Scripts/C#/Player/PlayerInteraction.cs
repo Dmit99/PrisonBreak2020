@@ -7,18 +7,6 @@ public class PlayerInteraction : KeyPadScript
     #region variables...
     private float range = 5f;
 
-    [Header("GameObjects")]
-    [SerializeField]
-    private GameObject cofin1;
-    [SerializeField]
-    private GameObject rock;
-    [SerializeField]
-    private GameObject fireInstance;
-
-    /// This will be true once the player has a throwable object in he's inventory.
-    private bool shootingReady;
-
-
     [Header("UI elements")]
     [SerializeField]
     [Tooltip("Insert the information text in here.")]
@@ -35,7 +23,6 @@ public class PlayerInteraction : KeyPadScript
         Starting();
 
         information.text = "";
-        shootingReady = false;
         uiInventory.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }

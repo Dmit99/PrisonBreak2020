@@ -26,13 +26,9 @@ public class CubeScape : MonoBehaviour
             for (int z = 0; z < gridSize; z++)
             {
                 Random.InitState(seed: seedNumber); //Random generation
-
                 float perlinX = (x / detailed) + GameManagerRandom.instance.GetPerlinSeed();
                 float perlinZ = (z / detailed) + + GameManagerRandom.instance.GetPerlinSeed();
-
                 float r = (Mathf.PerlinNoise(perlinX, perlinZ)-minHeight)*maxHeight;
-
-
                 Vector3 pos = new Vector3(x: x, y: r, z: z);
                 Instantiate(pfb, transform.position + pos, Quaternion.identity, transform);
             }

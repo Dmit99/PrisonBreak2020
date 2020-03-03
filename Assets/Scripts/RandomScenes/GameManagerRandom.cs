@@ -23,11 +23,6 @@ public class GameManagerRandom : MonoBehaviour
     private int seed;
     private float perlinSeed;
 
-    void Start()
-    {
-
-    }
-
     public void SetSeed(int seed)
     {
         this.seed = seed;

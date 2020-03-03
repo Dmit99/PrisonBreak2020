@@ -5,7 +5,6 @@ using gamehelper;
 public class GameManager : GameManagerHelper
 {
     private RawImage qRcodeImage;
-    GameManagerHelper gamehelper = new GameManagerHelper();
  
     #region Singleton...
     public static GameManager instance;

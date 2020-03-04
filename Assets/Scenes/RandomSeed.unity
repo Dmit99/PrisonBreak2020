@@ -324,11 +324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfb: {fileID: 2773857139361238048, guid: 6b949d5f927a714489032c5a53f381d8, type: 3}
-  seedNumber: 20
-  maxHeight: 5
-  minHeight: 0
-  gridSize: 50
-  detailed: 5
 --- !u!4 &1747333947
 Transform:
   m_ObjectHideFlags: 0
@@ -372,6 +367,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb711763661e043bf6cd698ec885dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  world:
+    minHeight: 0
+    maxHeight: 5
+    size: 50
+    detail: 10
+    seed: 10
+    type: 1
 --- !u!4 &1933479788
 Transform:
   m_ObjectHideFlags: 0

@@ -17,11 +17,15 @@ public class GameManagerRandom : MonoBehaviour
         {
             Destroy(obj: this);
         }
+
+        world.Initialize();
     }
     #endregion
 
     private int seed;
     private float perlinSeed;
+
+    public ProceduralWorld world;
 
     public void SetSeed(int seed)
     {
@@ -33,5 +37,10 @@ public class GameManagerRandom : MonoBehaviour
     public float GetPerlinSeed()
     {
         return perlinSeed;
+    }
+
+    private void Start()
+    {
+        
     }
 }

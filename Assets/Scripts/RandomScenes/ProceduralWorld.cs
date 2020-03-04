@@ -9,13 +9,49 @@ public class ProceduralWorld
 
     public enum GenType { RandomBased, PerlinBased, sinBased};
 
-    public float minHeight = 0f;
-    public float maxHeight = 5f;
-    public int size = 50;
-    public float detail = 10.0f;
-    public int seed = 0;
-    public GenType type;
+    [SerializeField] private float minHeight = 0f;
+    [SerializeField] private float maxHeight = 5f;
+    [SerializeField] private int size = 50;
+    [SerializeField] private float detail = 10.0f;
+    [SerializeField] private GenType type;
+    private int seed = 0;
     public float[,] heights;
+
+    //public float MinHeight
+    //{
+    //    get { return minHeight; }
+    //    set { minHeight = value; Initialize(); }
+    //}
+
+    //public float MaxHeight
+    //{
+    //    get { return maxHeight; }
+    //    set { maxHeight = value; Initialize(); }
+    //}
+
+    //public int Size
+    //{
+    //    get { return size; }
+    //    set { size = value; Initialize(); }
+    //}
+
+    //public float Detail
+    //{
+    //    get { return detail; }
+    //    set { detail = value; Initialize(); }
+    //}
+
+    //public int Seed
+    //{
+    //    get { return seed; }
+    //    set { seed = value; Initialize(); }
+    //}
+
+    //public GenType TypeGen
+    //{
+    //    get { return type; }
+    //    set { type = value; Initialize(); }
+    //}
 
     public ProceduralWorld(float minHeight, float maxHeight, int size, float detail, int seed, GenType type)
     {
@@ -27,7 +63,7 @@ public class ProceduralWorld
         this.seed = seed;
         this.type = type;
     }
-
+    
     public void Initialize()
     {
         heights = new float[size, size];

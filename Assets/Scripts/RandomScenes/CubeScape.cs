@@ -11,9 +11,17 @@ public class CubeScape : MonoBehaviour
         Generate();
     }
 
+    public void Clean()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
     public void Generate()
     {
-        //TODO: read height from proc. world;
+        Clean(); /// Cleans up first then generate the new ones.
 
         for (int x = 0; x < GameManagerRandom.instance.world.heights.GetLength(dimension: 0); x++)
         {

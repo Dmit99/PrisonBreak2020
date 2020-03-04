@@ -34,13 +34,13 @@ public class GameManagerRandom : MonoBehaviour
         perlinSeed = Random.Range(-100000, 100000);
     }
 
+    private void OnValidate()
+    {
+        world.Initialize();
+    }
+
     public float GetPerlinSeed()
     {
         return perlinSeed;
-    }
-
-    private void Start()
-    {
-        
     }
 }

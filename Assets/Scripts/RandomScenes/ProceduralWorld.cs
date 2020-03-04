@@ -7,7 +7,7 @@ using UnityEngine;
 public class ProceduralWorld
 {
 
-    public enum GenType { RandomBased, PerlinBased};
+    public enum GenType { RandomBased, PerlinBased, sinBased};
 
     public float minHeight = 0f;
     public float maxHeight = 5f;
@@ -53,6 +53,13 @@ public class ProceduralWorld
                         float perlinX = (x / detail) + GameManagerRandom.instance.GetPerlinSeed();
                         float perlinZ = (z / detail) + +GameManagerRandom.instance.GetPerlinSeed();
                         height = (Mathf.PerlinNoise(perlinX, perlinZ) - minHeight) * maxHeight;
+                        break;
+
+                    case GenType.sinBased:
+                        float sinX = Mathf.Sin(x / detail);
+                        float sinZ = Mathf.Cos(z/detail);
+                        float combined = sinX + sinZ;
+                        height = (combined - minHeight) * maxHeight;
                         break;
 
                     default:

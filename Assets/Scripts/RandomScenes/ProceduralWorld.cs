@@ -63,10 +63,17 @@ public class ProceduralWorld
         this.seed = seed;
         this.type = type;
     }
-    
+
     public void Initialize()
     {
+        GameManagerRandom.instance.regenerate.AddListener(Regenerate);
+        Regenerate();
+    }
+
+    public void Regenerate()
+    {
         heights = new float[size, size];
+        GameManagerRandom.instance.SetSeed(seed: seed);
         Generate();
     }
 

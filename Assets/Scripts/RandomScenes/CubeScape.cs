@@ -8,6 +8,7 @@ public class CubeScape : MonoBehaviour
 
     private void Start()
     {
+        GameManagerRandom.instance.regenerate.AddListener(Generate);
         Generate();
     }
 

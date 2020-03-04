@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManagerRandom : MonoBehaviour
 {
@@ -18,13 +19,14 @@ public class GameManagerRandom : MonoBehaviour
             Destroy(obj: this);
         }
 
+        regenerate = new UnityEvent();
         world.Initialize();
     }
     #endregion
 
     private int seed;
     private float perlinSeed;
-
+    public UnityEvent regenerate;
     public ProceduralWorld world;
 
     public void SetSeed(int seed)
@@ -36,7 +38,7 @@ public class GameManagerRandom : MonoBehaviour
 
     private void OnValidate()
     {
-        world.Initialize();
+        regenerate.Invoke();
     }
 
     public float GetPerlinSeed()

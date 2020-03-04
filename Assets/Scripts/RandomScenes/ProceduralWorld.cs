@@ -29,11 +29,11 @@ public class ProceduralWorld
     //    set { maxHeight = value; Initialize(); }
     //}
 
-    //public int Size
-    //{
-    //    get { return size; }
-    //    set { size = value; Initialize(); }
-    //}
+    public int Size
+    {
+        get { return size; }
+        set { size = value; Initialize(); }
+    }
 
     //public float Detail
     //{

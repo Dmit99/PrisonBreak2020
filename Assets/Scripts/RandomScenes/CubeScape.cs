@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeScape : MonoBehaviour
+public class CubeScape : LandScape
 {
     [SerializeField] private GameObject pfb;
 
@@ -12,7 +12,7 @@ public class CubeScape : MonoBehaviour
         Generate();
     }
 
-    public void Clean()
+    public override void Clean()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -20,7 +20,7 @@ public class CubeScape : MonoBehaviour
         }
     }
 
-    public void Generate()
+    public override void Generate()
     {
         Clean(); /// Cleans up first then generate the new ones.
 

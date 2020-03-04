@@ -367,12 +367,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abb711763661e043bf6cd698ec885dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regenerate:
+    m_PersistentCalls:
+      m_Calls: []
   world:
     minHeight: 0
-    maxHeight: 5
+    maxHeight: 10
     size: 50
-    detail: 50
-    seed: 10
+    detail: 2
     type: 2
 --- !u!4 &1933479788
 Transform:

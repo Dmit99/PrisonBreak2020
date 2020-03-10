@@ -13,8 +13,8 @@ public class ProceduralWorld
     [SerializeField] private float maxHeight = 0.001f;
     [SerializeField] private int size = 50;
     [SerializeField] private float detail = 2.0f;
+    [SerializeField] private int seed = 0;
     [SerializeField] private GenType type;
-    private int seed = 0;
     public float[,] heights;
 
     //public float MinHeight
@@ -93,8 +93,10 @@ public class ProceduralWorld
 
                     case GenType.PerlinBased:
 
-                        float perlinX = (x / detail) + GameManagerRandom.instance.GetPerlinSeed();
-                        float perlinZ = (z / detail) + +GameManagerRandom.instance.GetPerlinSeed();
+                        //float perlinX = (x / detail) + GameManagerRandom.instance.GetPerlinSeed();
+                        //float perlinZ = (z / detail) + +GameManagerRandom.instance.GetPerlinSeed();
+                        float perlinX = GameManagerRandom.instance.GetPerlinSeed() + x / (float)GameManagerRandom.instance.world.size * detail;
+                        float perlinZ= GameManagerRandom.instance.GetPerlinSeed() + z / (float)GameManagerRandom.instance.world.size * detail;
                         height = (Mathf.PerlinNoise(perlinX, perlinZ) - minHeight) * maxHeight;
                         break;
 

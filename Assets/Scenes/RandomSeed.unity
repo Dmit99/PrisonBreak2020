@@ -460,9 +460,10 @@ MonoBehaviour:
       m_Calls: []
   world:
     minHeight: 0
-    maxHeight: 0.001
+    maxHeight: 0.3
     size: 512
-    detail: 2
+    detail: 4
+    seed: 10
     type: 1
 --- !u!4 &1933479788
 Transform:

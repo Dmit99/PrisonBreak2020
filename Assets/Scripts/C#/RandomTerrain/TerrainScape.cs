@@ -18,10 +18,19 @@ public class TerrainScape : LandScape
 
         Initialize();
     }
+
+    public override void Clean()
+    {
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Rocks");
+        for (int i = 0; i < gos.Length; i++)
+        {
+            Destroy(gos[i]);
+        }
+    }
+
     public override void Generate()
     {
-
-        Debug.Log("Adding height");
+        Clean();
         t.terrainData.heightmapResolution = GameManagerRandom.instance.world.Size;
         t.terrainData.SetHeights(xBase: 0, 0, GameManagerRandom.instance.world.heights);
 

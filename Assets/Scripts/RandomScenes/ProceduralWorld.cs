@@ -88,7 +88,7 @@ public class ProceduralWorld
                 /// Instanciating random rocks.
                 float rockRand = UnityEngine.Random.value;
 
-                if(rockRand < rockProbability)
+                if(rockRand < rockProbability *(maxHeight/height)) /// <- heighest point of the terrain, less rocks.
                 {
                     int t = UnityEngine.Random.Range(0, rockPrefab.Count);
                     Vector3Int rock = new Vector3Int(x: x, y: z, z: t);

@@ -460,10 +460,13 @@ MonoBehaviour:
       m_Calls: []
   world:
     rockPrefab:
-    - {fileID: 0}
+    - {fileID: 100000, guid: e22e6427d673f8b47884f2c5662195aa, type: 3}
+    - {fileID: 100000, guid: f1422f5c6e1457147a73440f96e079ac, type: 3}
+    - {fileID: 100000, guid: 7c8c1d0cdb996ab4e87515489f195873, type: 3}
+    - {fileID: 100000, guid: 12ff573d21ef578469f7a25c286520fe, type: 3}
     minHeight: 0
-    maxHeight: 0.3
-    size: 512
+    maxHeight: 0.03
+    size: 128
     detail: 4
     rockProbability: 0.02
     seed: 10

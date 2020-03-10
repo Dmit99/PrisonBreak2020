@@ -1,28 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FlyingRock : MonoBehaviour
 {
-    private Rigidbody rb;
+    [Header("Audio clips")]
+    [SerializeField] private AudioClip plastichit;
+    [SerializeField] private AudioClip groundhit;
+    [SerializeField] private AudioClip wallhit;
+    [SerializeField] private AudioSource audios;
 
-    void Start()
-    {
-        this.gameObject.name = "StoneBrick";
-
-        /// Searching the rigidbody component. 
-        rb = this.gameObject.GetComponent<Rigidbody>();
-
-        /// Adding Rigidbody force.
-        Vector3 push = (Camera.main.transform.forward * 600 + Vector3.up * 100) * Time.deltaTime;
-        rb.AddForce(push * 60);
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "church_bell")
+        if(collision.gameObject.name == "Bell")
         {
             GameManager.instance.OpenGate = true;
+        }
+
+        if(collision.gameObject.name == "Lamp" && collision.relativeVelocity.magnitude > 0.1f)
+        {
+            audios.PlayOneShot(plastichit);
+        }
+
+        if (collision.gameObject.tag == "Floor" && collision.relativeVelocity.magnitude > 0.1f)
+        {
+            audios.PlayOneShot(groundhit);
+        }
+
+        if (collision.gameObject.name == "Pole" || collision.gameObject.name == "Wall")
+        {
+            if (collision.relativeVelocity.magnitude > 0.1f)
+            {
+                audios.PlayOneShot(wallhit);
+            }
         }
     }
 }

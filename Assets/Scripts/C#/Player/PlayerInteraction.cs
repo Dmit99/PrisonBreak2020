@@ -1,22 +1,11 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityStandardAssets.Characters.FirstPerson;
-public class PlayerInteraction : MonoBehaviour
+
+public class PlayerInteraction : KeyPadScript
 {
     #region variables...
     private float range = 5f;
-
-    [Header("GameObjects")]
-    [SerializeField]
-    private GameObject cofin1;
-    [SerializeField]
-    private GameObject rock;
-    [SerializeField]
-    private GameObject fireInstance;
-
-    /// This will be true once the player has a throwable object in he's inventory.
-    private bool shootingReady;
-
 
     [Header("UI elements")]
     [SerializeField]
@@ -31,8 +20,9 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Start()
     {
+        Starting();
+
         information.text = "";
-        shootingReady = false;
         uiInventory.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -119,6 +109,62 @@ public class PlayerInteraction : MonoBehaviour
 
                 case "BonusItem":
                     break;
+
+                #region KeyPadNumbers
+                case "1":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "2":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "3":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "4":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "5":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "6":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "7":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "8":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "9":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "0":
+                    InsertNumber(hit.collider.gameObject.name);
+                    ChangeNumberLayout();
+                    break;
+
+                case "Enter":
+                    NumberCorrectChecker();
+                    break;
+                #endregion
 
                 default:
                     break;

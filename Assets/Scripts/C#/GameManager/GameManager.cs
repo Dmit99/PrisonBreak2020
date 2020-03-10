@@ -30,6 +30,9 @@ public class GameManager : GameManagerHelper
         /// Getting QR code image.
         StartCoroutine(GetPNG("https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=otpauth%3A%2F%2Ftotp%2FDmitri_The_Prisoner%3Fsecret%3DGM2DENRSG5BVSS2B%26issuer%3DPrisonBreak2020", qRcodeImage));
 
+        /// Key will change location on startup.
+        SetupKeyLocation();
+
         /// Setting up and recieving every light in the prison.
         SetupAlarmLights();
     }

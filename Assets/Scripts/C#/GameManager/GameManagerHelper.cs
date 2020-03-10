@@ -24,6 +24,11 @@ namespace gamehelper
         public GameObject[] AlarmLight = new GameObject[17];
         #endregion
 
+        #region keySetup
+        [SerializeField] private GameObject keyObj;
+        [SerializeField] private List<Transform> keySpawnLocations;
+        #endregion
+
         #region gates and doors.
         [Header("gates and doors")]
         [Tooltip("Insert the gate of the jail here.")]
@@ -94,6 +99,12 @@ namespace gamehelper
                     spotLight.GetComponentInChildren<Light>().enabled = false;
                 }
             }
+        }
+
+        protected void SetupKeyLocation()
+        {
+            int randomSpawnLocation = Random.Range(0, keySpawnLocations.Count);
+            keyObj.transform.position = keySpawnLocations[randomSpawnLocation].transform.position;
         }
 
         IEnumerator PunchAlarm()

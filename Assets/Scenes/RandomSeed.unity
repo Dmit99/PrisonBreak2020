@@ -459,12 +459,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   world:
+    rockPrefab:
+    - {fileID: 0}
     minHeight: 0
     maxHeight: 0.3
     size: 512
     detail: 4
+    rockProbability: 0.02
     seed: 10
     type: 1
+    rocks: []
 --- !u!4 &1933479788
 Transform:
   m_ObjectHideFlags: 0

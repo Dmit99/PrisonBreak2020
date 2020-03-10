@@ -9,49 +9,22 @@ public class ProceduralWorld
 
     public enum GenType { RandomBased, PerlinBased, sinBased};
 
+    public List<GameObject> rockPrefab;
     [SerializeField] private float minHeight = 0f;
     [SerializeField] private float maxHeight = 0.001f;
     [SerializeField] private int size = 50;
     [SerializeField] private float detail = 2.0f;
+    [SerializeField] private float rockProbability;
     [SerializeField] private int seed = 0;
     [SerializeField] private GenType type;
     public float[,] heights;
-
-    //public float MinHeight
-    //{
-    //    get { return minHeight; }
-    //    set { minHeight = value; Initialize(); }
-    //}
-
-    //public float MaxHeight
-    //{
-    //    get { return maxHeight; }
-    //    set { maxHeight = value; Initialize(); }
-    //}
+    public List<Vector3Int> rocks;
 
     public int Size
     {
         get { return size; }
         set { size = value; Initialize(); }
     }
-
-    //public float Detail
-    //{
-    //    get { return detail; }
-    //    set { detail = value; Initialize(); }
-    //}
-
-    //public int Seed
-    //{
-    //    get { return seed; }
-    //    set { seed = value; Initialize(); }
-    //}
-
-    //public GenType TypeGen
-    //{
-    //    get { return type; }
-    //    set { type = value; Initialize(); }
-    //}
 
     public ProceduralWorld(float minHeight, float maxHeight, int size, float detail, int seed, GenType type)
     {
@@ -93,8 +66,6 @@ public class ProceduralWorld
 
                     case GenType.PerlinBased:
 
-                        //float perlinX = (x / detail) + GameManagerRandom.instance.GetPerlinSeed();
-                        //float perlinZ = (z / detail) + +GameManagerRandom.instance.GetPerlinSeed();
                         float perlinX = GameManagerRandom.instance.GetPerlinSeed() + x / (float)GameManagerRandom.instance.world.size * detail;
                         float perlinZ= GameManagerRandom.instance.GetPerlinSeed() + z / (float)GameManagerRandom.instance.world.size * detail;
                         height = (Mathf.PerlinNoise(perlinX, perlinZ) - minHeight) * maxHeight;
@@ -113,6 +84,16 @@ public class ProceduralWorld
                 }
 
                 heights[x, z] = height;
+
+                /// Instanciating random rocks.
+                float rockRand = UnityEngine.Random.value;
+
+                if(rockRand < rockProbability)
+                {
+                    int t = UnityEngine.Random.Range(0, rockPrefab.Count);
+                    Vector3Int rock = new Vector3Int(x: x, y: z, z: t);
+                    rocks.Add(rock);
+                }
             }
         }
 

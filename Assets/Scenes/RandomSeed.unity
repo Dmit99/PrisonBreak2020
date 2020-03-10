@@ -460,10 +460,10 @@ MonoBehaviour:
       m_Calls: []
   world:
     minHeight: 0
-    maxHeight: 10
+    maxHeight: 0.001
     size: 512
     detail: 2
-    type: 2
+    type: 1
 --- !u!4 &1933479788
 Transform:
   m_ObjectHideFlags: 0

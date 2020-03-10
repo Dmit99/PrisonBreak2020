@@ -10,9 +10,9 @@ public class ProceduralWorld
     public enum GenType { RandomBased, PerlinBased, sinBased};
 
     [SerializeField] private float minHeight = 0f;
-    [SerializeField] private float maxHeight = 5f;
+    [SerializeField] private float maxHeight = 0.001f;
     [SerializeField] private int size = 50;
-    [SerializeField] private float detail = 10.0f;
+    [SerializeField] private float detail = 2.0f;
     [SerializeField] private GenType type;
     private int seed = 0;
     public float[,] heights;

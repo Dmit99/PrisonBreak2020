@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using TMPro;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -15,13 +16,11 @@ public class PlayerInteraction : KeyPadScript
     [SerializeField]
     [Tooltip("Insert the Inventory in here.")]
     private GameObject uiInventory;
-
     #endregion
 
-    private void Start()
+    public override void Start()
     {
-        Starting();
-
+        base.Start();
         information.text = "";
         uiInventory.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -85,6 +84,7 @@ public class PlayerInteraction : KeyPadScript
                     if(k != null)
                     {
                         k.Action();
+                        StartCoroutine(DisplayText(pickedup: 2));
                         Inventory.instance.printToConsole();
                     }
                     break;
@@ -107,7 +107,14 @@ public class PlayerInteraction : KeyPadScript
                     }
                     break;
 
-                case "BonusItem":
+                case "Cigarette":
+                    Bonus b = hit.collider.gameObject.GetComponent<Bonus>();
+                    if(b != null)
+                    {
+                        b.Action();
+                        StartCoroutine(DisplayText(pickedup: 1));
+                        Inventory.instance.printToConsole();
+                    }
                     break;
 
                 #region KeyPadNumbers
@@ -171,4 +178,25 @@ public class PlayerInteraction : KeyPadScript
             }
         }
     }
+
+    /// <summary>
+    /// Display the text on the screen for player notifying.
+    /// </summary>
+    /// <param name="pickedup">If picked up is: 1, picked up is a bonus item. If picked up is 2, its a key!</param>
+    /// <returns></returns>
+    private IEnumerator DisplayText(int pickedup)
+    {
+        if (pickedup == 1)
+        {
+            information.text = "You have found a cigarette. It weights 0.2 kg.";
+        }
+        else if (pickedup == 2)
+        {
+            information.text = "You have found a key! You can unlock a door with this one.";
+
+        }
+        yield return new WaitForSeconds(5);
+        information.text = "";
+    }
+    
 }

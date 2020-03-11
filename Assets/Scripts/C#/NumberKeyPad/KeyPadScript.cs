@@ -21,7 +21,7 @@ public class KeyPadScript : JsonNetwork
     /// <summary>
     /// Starting up the keypad numbers by adding the numbers in the list and update them.
     /// </summary>
-    public void Starting()
+    public virtual void Start()
     {
         oldNumber = "";
         googleAuthNumber = "";

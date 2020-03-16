@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TerrainScape : LandScape
 {
@@ -33,8 +31,11 @@ public class TerrainScape : LandScape
         Clean();
         t.terrainData.heightmapResolution = GameManagerRandom.instance.world.Size;
         t.terrainData.SetHeights(xBase: 0, 0, GameManagerRandom.instance.world.heights);
+
         /// Loading textures
-        
+        /// Is the TerrainTexturesSetup.cs script.
+
+
         /// Instantiating Assets on the terrain.
         for(int r= 0; r < GameManagerRandom.instance.world.assets.Count; r++)
         {

@@ -19,6 +19,8 @@ public class ProceduralWorld
     [SerializeField] private GenType type;
     public float[,] heights;
     public List<Vector3Int> assets;
+    private int enoughParts = 0;
+    private bool skipAPart = false;
 
     public int Size
     {
@@ -108,8 +110,33 @@ public class ProceduralWorld
                 if (assetRand < assetProbability * (maxHeight / height)) /// <- heighest point of the terrain, less assets.
                 {
                     int t = UnityEngine.Random.Range(0, assetsPfb.Count);
-                    Vector3Int asset = new Vector3Int(x: x, y: z, z: t);
-                    assets.Add(asset);
+                    if (t == 10 || t == 11 || t == 12)
+                    {
+                        if (enoughParts != 10)
+                        {
+                            if (!skipAPart)
+                            {
+                                int randomPositionX = UnityEngine.Random.Range(0, 256);
+                                int randomPositionZ = UnityEngine.Random.Range(0, (int)maxHeight);
+                                skipAPart = !skipAPart;
+                                Vector3Int asset = new Vector3Int(x: x + randomPositionX, y: z+ randomPositionZ, z: t);
+                                assets.Add(asset);
+                                enoughParts++;
+                            }
+                            else
+                            {
+                                skipAPart = !skipAPart;
+                            }
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else
+                    {
+                        Vector3Int asset = new Vector3Int(x: x, y: z, z: t);
+                        assets.Add(asset);
+                    }
                 }
             }
         }

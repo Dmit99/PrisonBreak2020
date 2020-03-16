@@ -26,14 +26,13 @@ public class ProceduralWorld
         set { size = value; Initialize(); }
     }
 
-    public ProceduralWorld(float minHeight, float maxHeight, int size, float detail, int seed, GenType type)
+    public ProceduralWorld(float minHeight, float maxHeight, int size, float detail, GenType type)
     {
         Debug.Log(message: ("Constructor of the world has been called."));
         this.minHeight = minHeight;
         this.maxHeight = maxHeight;
         this.size = size;
         this.detail = detail;
-        this.seed = seed;
         this.type = type;
     }
 
@@ -41,6 +40,7 @@ public class ProceduralWorld
     public void Initialize()
     {
         GameManagerRandom.instance.regenerate.AddListener(Regenerate);
+        seed = PlayerPrefs.GetInt("SeedNumber");
         Regenerate();
     }
 

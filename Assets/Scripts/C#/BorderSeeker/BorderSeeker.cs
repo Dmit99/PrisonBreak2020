@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class BorderSeeker : MonoBehaviour
 {
-
     [SerializeField] private GameObject player;
-
 
     private void OnTriggerEnter(Collider other)
     {

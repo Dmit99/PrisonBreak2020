@@ -33,14 +33,16 @@ public class TerrainScape : LandScape
         Clean();
         t.terrainData.heightmapResolution = GameManagerRandom.instance.world.Size;
         t.terrainData.SetHeights(xBase: 0, 0, GameManagerRandom.instance.world.heights);
-
-        for(int r= 0; r < GameManagerRandom.instance.world.rocks.Count; r++)
+        /// Loading textures
+        
+        /// Instantiating Assets on the terrain.
+        for(int r= 0; r < GameManagerRandom.instance.world.assets.Count; r++)
         {
-            Vector3Int rock = GameManagerRandom.instance.world.rocks[r];
+            Vector3Int asset = GameManagerRandom.instance.world.assets[r];
 
             Vector3 worldPosition = new Vector3(
                x: MathUtils.Map(
-                    rock.x,
+                    asset.x,
                     0,
                     GameManagerRandom.instance.world.Size,
                     t.GetPosition().x,
@@ -49,7 +51,7 @@ public class TerrainScape : LandScape
                 y: 0.0f,
 
                 z: MathUtils.Map(
-                    rock.y,
+                    asset.y,
                     0,
                     GameManagerRandom.instance.world.Size,
                     t.GetPosition().z,
@@ -59,7 +61,10 @@ public class TerrainScape : LandScape
 
             worldPosition.y = t.SampleHeight(worldPosition);
 
-            Instantiate(original: GameManagerRandom.instance.world.rockPrefab[rock.z], position: worldPosition, rotation: Quaternion.identity);
+            if (worldPosition.y > 0.005f)
+            {
+                Instantiate(original: GameManagerRandom.instance.world.assetsPfb[asset.z], position: worldPosition, rotation: Quaternion.identity);
+            }
         }
 
     }

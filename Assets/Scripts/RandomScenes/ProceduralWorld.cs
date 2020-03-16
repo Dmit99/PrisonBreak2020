@@ -7,18 +7,19 @@ using UnityEngine;
 public class ProceduralWorld
 {
 
-    public enum GenType { RandomBased, PerlinBased, sinBased};
+    public enum GenType { RandomBased, PerlinBased, sinBased, Island};
 
-    public List<GameObject> rockPrefab;
+    public List<GameObject> assetsPfb;
     [SerializeField] private float minHeight = 0f;
     [SerializeField] private float maxHeight = 0.001f;
     [SerializeField] private int size = 50;
     [SerializeField] private float detail = 2.0f;
-    [SerializeField] private float rockProbability;
+    [SerializeField] private float assetProbability;
     [SerializeField] private int seed = 0;
     [SerializeField] private GenType type;
     public float[,] heights;
-    public List<Vector3Int> rocks;
+    public List<Vector3Int> assets;
+    public List<Texture> terrainTextures;
 
     public int Size
     {
@@ -57,7 +58,6 @@ public class ProceduralWorld
             for (int z = 0; z < heights.GetLength(dimension: 1); z++)
             {
                 float height;
-
                 switch (type)
                 {
                     case GenType.RandomBased:
@@ -67,15 +67,32 @@ public class ProceduralWorld
                     case GenType.PerlinBased:
 
                         float perlinX = GameManagerRandom.instance.GetPerlinSeed() + x / (float)GameManagerRandom.instance.world.size * detail;
-                        float perlinZ= GameManagerRandom.instance.GetPerlinSeed() + z / (float)GameManagerRandom.instance.world.size * detail;
+                        float perlinZ = GameManagerRandom.instance.GetPerlinSeed() + z / (float)GameManagerRandom.instance.world.size * detail;
                         height = (Mathf.PerlinNoise(perlinX, perlinZ) - minHeight) * maxHeight;
                         break;
 
                     case GenType.sinBased:
                         float sinX = Mathf.Sin(x / detail);
-                        float sinZ = Mathf.Cos(z/detail);
+                        float sinZ = Mathf.Cos(z / detail);
                         float combined = sinX + sinZ;
                         height = (combined - minHeight) * maxHeight;
+                        break;
+
+                    case GenType.Island:
+                        Vector2 midpoint;
+                        midpoint = new Vector2(x: GameManagerRandom.instance.GetPerlinSeed() + x / (float)GameManagerRandom.instance.world.size * detail, y: GameManagerRandom.instance.GetPerlinSeed() + z / (float)GameManagerRandom.instance.world.size * detail);
+
+                        float distance = Vector2.Distance(midpoint, new Vector2(x, z));
+                        float pSeed = GameManagerRandom.instance.GetPerlinSeed();
+                        float perlinXisland = (float)x / detail + pSeed;
+                        float perlinZisland = (float)z / detail + pSeed;
+
+                        height = (Mathf.PerlinNoise(perlinXisland, perlinZisland) - minHeight) * maxHeight + (Mathf.Cos(distance / detail) * maxHeight);
+
+                        if (height > maxHeight)
+                        {
+                            height += UnityEngine.Random.Range(minHeight, maxHeight) / distance;
+                        }
                         break;
 
                     default:
@@ -86,18 +103,15 @@ public class ProceduralWorld
                 heights[x, z] = height;
 
                 /// Instanciating random rocks.
-                float rockRand = UnityEngine.Random.value;
+                float assetRand = UnityEngine.Random.value;
 
-                if(rockRand < rockProbability *(maxHeight/height)) /// <- heighest point of the terrain, less rocks.
+                if (assetRand < assetProbability * (maxHeight / height)) /// <- heighest point of the terrain, less assets.
                 {
-                    int t = UnityEngine.Random.Range(0, rockPrefab.Count);
-                    Vector3Int rock = new Vector3Int(x: x, y: z, z: t);
-                    rocks.Add(rock);
+                    int t = UnityEngine.Random.Range(0, assetsPfb.Count);
+                    Vector3Int asset = new Vector3Int(x: x, y: z, z: t);
+                    assets.Add(asset);
                 }
             }
         }
-
-        Debug.Log(message: ("World has been generated!"));
-
     }
 }

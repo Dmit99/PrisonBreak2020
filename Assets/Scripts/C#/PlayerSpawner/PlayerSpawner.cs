@@ -12,22 +12,20 @@ public class PlayerSpawner : MonoBehaviour
         fps.enabled = false;
     }
 
-    // Start is called before the first frame update
-    private IEnumerator Start()
+    private void Start()
+    {
+        StartCoroutine(PlayerToStartPosition());
+    }
+
+    private IEnumerator PlayerToStartPosition()
     {
         CenterCalculation();
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.25f);
         fps.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void CenterCalculation() 
-    {     
+    {
         Terrain t = Terrain.activeTerrain;
         Vector3 center = t.GetPosition() + (t.terrainData.size / 2f);
         float height = t.SampleHeight(center);
@@ -35,5 +33,15 @@ public class PlayerSpawner : MonoBehaviour
         this.gameObject.transform.localPosition = new Vector3(pos.x, pos.y, pos.z);
         Debug.Log(this.gameObject.transform.position);
         fps.transform.position = pos;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        /// If player hits the border of the map he will be teleported back to the spawn position.
+        if (other.gameObject.tag == "Border")
+        {
+            fps.enabled = false;
+            StartCoroutine(PlayerToStartPosition());
+        }
     }
 }

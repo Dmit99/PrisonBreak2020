@@ -31,7 +31,6 @@ public class PlayerSpawner : MonoBehaviour
         float height = t.SampleHeight(center);
         Vector3 pos = new Vector3(center.x, height + 2f, center.z);
         this.gameObject.transform.localPosition = new Vector3(pos.x, pos.y, pos.z);
-        Debug.Log(this.gameObject.transform.position);
         fps.transform.position = pos;
     }
 

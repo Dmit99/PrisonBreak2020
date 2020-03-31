@@ -10,7 +10,6 @@ public class ProceduralWorld
 
     [Header("Global.")]
     public List<GameObject> assetsPfb;
-    public GameObject playerSpawner;
     [SerializeField] private float minHeight = 0f;
     [SerializeField] private float maxHeight = 0.001f;
     [SerializeField] private int size = 50;
@@ -20,7 +19,6 @@ public class ProceduralWorld
     [SerializeField] private GenType type;
     public float[,] heights;
     public List<Vector3Int> assets;
-    public List<Vector3Int> PlayerSpawnPositions;
     private int enoughParts = 0;
     private bool skipAPart = false;
 
@@ -58,7 +56,6 @@ public class ProceduralWorld
 
     public void Generate()
     {
-        PlayerSpawnPositions = new List<Vector3Int>();
         for (int x = 0; x < heights.GetLength(dimension: 0); x++)
         {
             for (int z = 0; z < heights.GetLength(dimension: 1); z++)
@@ -132,15 +129,7 @@ public class ProceduralWorld
                                 skipAPart = !skipAPart;
                             }
                         }
-                        else
-                        {
-                        }
-                    }
-                    else if(t== 16)
-                    {
-                        Vector3Int asset = new Vector3Int(x: x, y: z, z: t);
-                        assets.Add(asset);
-                        PlayerSpawnPositions.Add(asset);
+                        else{}
                     }
                     else
                     {

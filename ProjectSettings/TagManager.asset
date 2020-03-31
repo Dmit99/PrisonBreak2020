@@ -7,6 +7,9 @@ TagManager:
   - AlarmSpotLight
   - Floor
   - Rocks
+  - Border
+  - gameInformation
+  - PartsFoundInformation
   layers:
   - Default
   - TransparentFX

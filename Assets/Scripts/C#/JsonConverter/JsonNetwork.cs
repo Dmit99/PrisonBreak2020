@@ -14,11 +14,7 @@ public abstract class JsonNetwork : MonoBehaviour
     {
         
     }
-
-    public virtual void Start()
-    {
-        
-    }
+    public virtual void Start() { }
 
     protected virtual IEnumerator GetRequest(string uri)
     {

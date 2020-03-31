@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-#region no default name spaces
 using UnityEngine.Networking;
 using UnityEngine.UI;
-#endregion
+using UnityEngine.SceneManagement;
 
 namespace gamehelper
 {
@@ -64,6 +62,11 @@ namespace gamehelper
                     AlarmLight[i].transform.Rotate(0, 0, -60 * Time.deltaTime * 2);
                 }
             }
+        }
+
+        public void ChangeScene(int sceneNumber)
+        {
+            SceneManager.LoadScene(sceneBuildIndex: sceneNumber, mode: LoadSceneMode.Single);
         }
 
         protected IEnumerator GetPNG(string pngUrl, RawImage qrCodeImage)

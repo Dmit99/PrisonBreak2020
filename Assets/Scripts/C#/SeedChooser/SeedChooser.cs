@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
+using TMPro;
 
 public class SeedChooser : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class SeedChooser : MonoBehaviour
     private int seedNumber;
     #region Singleton...
     public static SeedChooser instance;
+    [SerializeField] TextMeshProUGUI playbutton;
+
+    private FontStyles noBold = FontStyles.Bold - 1;
+    private FontStyles bold = FontStyles.Bold;
+    private Color green = new Color32(17, 212, 33, 255);
+    private Color yellow = new Color32(238, 241, 92, 255);
+    private Color red = new Color32(212, 25, 17, 255);
+
     private void Awake()
     {
         if (instance == null)
@@ -23,11 +32,30 @@ public class SeedChooser : MonoBehaviour
     }
     #endregion
 
+    private void Update()
+    {
+        if(inputText.text == "")
+        {
+            playbutton.faceColor = red;
+            playbutton.fontStyle = noBold;
+        }
+
+        if(inputText.text != "")
+        {
+            playbutton.faceColor = green;
+            playbutton.fontStyle = bold; 
+        }
+    }
+
     public void SaveSeedNumberGiven()
     {
-        if(inputText.text != " ")
+        if(inputText.text != "")
         {
             StartCoroutine(SaveAndNextScene());
+        }
+        else if(inputText.text == "")
+        {
+            return;
         }
     }
 

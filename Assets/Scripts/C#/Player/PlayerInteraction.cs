@@ -94,6 +94,7 @@ public class PlayerInteraction : KeyPadScript
                     if(ro != null)
                     { 
                         ro.Action();
+                        StartCoroutine(DisplayText(pickedup: 3));
                         Inventory.instance.printToConsole();
                     }
                     break;
@@ -186,17 +187,28 @@ public class PlayerInteraction : KeyPadScript
     /// <returns></returns>
     private IEnumerator DisplayText(int pickedup)
     {
-        if (pickedup == 1)
+        switch (pickedup)
         {
-            information.text = "You have found a cigarette. It weights 0.2 kg.";
-        }
-        else if (pickedup == 2)
-        {
-            information.text = "You have found a key! You can unlock a door with this one.";
+            case 1:
+                information.text = "You have found a cigarette. \nIt weights 0.2 kg.";
+                yield return new WaitForSeconds(5);
+                information.text = "";
+                break;
 
+            case 2:
+                information.text = "You have found a key! \nYou could try to unlock a door with this one.";
+                yield return new WaitForSeconds(5);
+                information.text = "";
+                break;
+            case 3:
+                information.text = "You picked up a rock. \nPress G to throw it!\nThrow it wisely!";
+                yield return new WaitForSeconds(5);
+                information.text = "";
+                break;
+
+            default:
+                break;
         }
-        yield return new WaitForSeconds(5);
-        information.text = "";
     }
     
 }

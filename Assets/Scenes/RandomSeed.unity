@@ -439,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b82bc719cf2643b1d6f08cb3b1fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plopSound: {fileID: 8300000, guid: 41d0ea7f8ecfd724889b275ae1166bff, type: 3}
 --- !u!1 &454312918
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,8 +497,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: GameInformation in here!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fbc2a1e6fb2329c498cc5263942fb575, type: 2}
+  m_sharedMaterial: {fileID: -3334441097006531881, guid: fbc2a1e6fb2329c498cc5263942fb575,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -522,7 +524,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 27
+  m_fontSize: 32.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1069,8 +1071,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188838118}
-  m_LocalRotation: {x: 0.14715058, y: 0.57153195, z: 0.105066404, w: -0.8004118}
-  m_LocalPosition: {x: 744.3057, y: -213.8132, z: -91.98544}
+  m_LocalRotation: {x: 0.000000005054568, y: 0.9932918, z: 0.11563504, w: -0.000000043418165}
+  m_LocalPosition: {x: -154.25, y: -3.8099995, z: 229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1679,8 +1681,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Total parts information here!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fbc2a1e6fb2329c498cc5263942fb575, type: 2}
+  m_sharedMaterial: {fileID: -3334441097006531881, guid: fbc2a1e6fb2329c498cc5263942fb575,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1705,7 +1708,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 27.7
+  m_fontSize: 32.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

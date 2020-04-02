@@ -4,8 +4,6 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class MainMenuController : MonoBehaviour
 {
-    private SeedChooser seedInformation;
-
     [SerializeField] private PostProcessVolume activeVolume;
     private float lerp = 0;
     private const float duration = 1.5f;
@@ -15,11 +13,6 @@ public class MainMenuController : MonoBehaviour
     private Bloom bloom;
     private bool startLerping = false;
     private bool change = false;
-
-    private void Awake()
-    {
-        seedInformation = gameObject.GetComponent<SeedChooser>();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -43,11 +36,6 @@ public class MainMenuController : MonoBehaviour
         if (startLerping)
         {
             StartLerpingBloomEffect();
-        }
-
-        if(seedInformation.HASPRESSED == true)
-        {
-            GoToGameScene();
         }
     }
 
@@ -74,10 +62,5 @@ public class MainMenuController : MonoBehaviour
                 change = false;
             }
         }
-    }
-
-    public void GoToGameScene()
-    {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }

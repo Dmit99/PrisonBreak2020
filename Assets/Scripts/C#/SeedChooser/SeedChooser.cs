@@ -1,37 +1,19 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class SeedChooser : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI playbutton;
     [SerializeField] private Text inputText;
     private int seedNumber;
-    #region Singleton...
-    public static SeedChooser instance;
-    [SerializeField] TextMeshProUGUI playbutton;
-
     private FontStyles noBold = FontStyles.Bold - 1;
     private FontStyles bold = FontStyles.Bold;
     private Color green = new Color32(17, 212, 33, 255);
-    private Color yellow = new Color32(238, 241, 92, 255);
+    //private Color yellow = new Color32(238, 241, 92, 255);
     private Color red = new Color32(212, 25, 17, 255);
-
-    public bool HASPRESSED = false;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else if (instance != null)
-        {
-            Destroy(this);
-        }
-    }
-    #endregion
 
     private void Update()
     {
@@ -65,6 +47,6 @@ public class SeedChooser : MonoBehaviour
         int.TryParse(inputText.text, out seedNumber);
         PlayerPrefs.SetInt(key: "SeedNumber", value: seedNumber);
         yield return new WaitForSeconds(1);
-        HASPRESSED = true;
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }

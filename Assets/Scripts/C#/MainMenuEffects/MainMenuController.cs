@@ -1,29 +1,83 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
 
 public class MainMenuController : MonoBehaviour
 {
+    private SeedChooser seedInformation;
+
     [SerializeField] private PostProcessVolume activeVolume;
+    private float lerp = 0;
+    private const float duration = 1.5f;
+    private const float maxValue = 50;
+    private const float minValue = 20;
+
+    private Bloom bloom;
+    private bool startLerping = false;
+    private bool change = false;
+
+    private void Awake()
+    {
+        seedInformation = gameObject.GetComponent<SeedChooser>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        /// Getting active post processing.
+        /// If there is none. Lerping will not be used!
+        if (activeVolume != null)
+        {
+            activeVolume.profile.TryGetSettings(out bloom);
+            if (bloom != null)
+            {
+                startLerping = true;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(activeVolume != null)
+        if (startLerping)
         {
-            Vignette vignette;
-            activeVolume.profile.TryGetSettings(out vignette);
-            if(vignette != null)
+            StartLerpingBloomEffect();
+        }
+
+        if(seedInformation.HASPRESSED == true)
+        {
+            GoToGameScene();
+        }
+    }
+
+    void StartLerpingBloomEffect()
+    {
+        if (!change)
+        {
+            lerp += Time.deltaTime / duration;
+            bloom.intensity.value = Mathf.Lerp(a: minValue, b: maxValue, t: lerp);
+            if(bloom.intensity.value == 50)
             {
-                vignette.intensity.value = 0.675f;
+                lerp = 0;
+                change = true;
             }
         }
+        
+        if (change)
+        {
+            lerp += Time.deltaTime / duration;
+            bloom.intensity.value = Mathf.Lerp(a: maxValue, b: minValue, t: lerp);
+            if(bloom.intensity.value == 20)
+            {
+                lerp = 0;
+                change = false;
+            }
+        }
+    }
+
+    public void GoToGameScene()
+    {
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }

@@ -115,7 +115,7 @@ namespace gamehelper
             bellAudio.volume = 1;
             bellAudio.PlayOneShot(bell);
             yield return new WaitForSeconds(5);
-            bellAudio.volume = 0.5f;
+            bellAudio.volume = 0.2f;
             bellAudio.loop = true;
             bellAudio.clip = alarm;
             bellAudio.Play();

@@ -1,22 +1,38 @@
-﻿using UnityEngine;
-using System.Collections;
-using TMPro;
+﻿using System.Collections;
+using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.Audio;
+using TMPro;
 
 public class PlayerInteraction : KeyPadScript
 {
     #region variables...
-    private float range = 5f;
-
     [Header("UI elements")]
     [SerializeField]
     [Tooltip("Insert the information text in here.")]
     private TextMeshProUGUI information;
 
+    [Header("Audio")]
+    [SerializeField]
+    [Tooltip("Insert the audio plop sound in here.")]
+    private AudioClip plopSound;
+    private AudioSource thisAudioSource;
+
     [SerializeField]
     [Tooltip("Insert the Inventory in here.")]
     private GameObject uiInventory;
+
+    private const float range = 5f;
+    private const float maxVolume = 1f;
+    private const float quarterVolume = 0.25f;
+    private const float halfSecond = 0.5f;
+    private const float fourAndAHalfSeconds = 4.5f;
     #endregion
+
+    private void Awake()
+    {
+        thisAudioSource = gameObject.GetComponent<AudioSource>();
+    }
 
     public override void Start()
     {
@@ -190,19 +206,32 @@ public class PlayerInteraction : KeyPadScript
         switch (pickedup)
         {
             case 1:
+                thisAudioSource.volume = quarterVolume;
+                thisAudioSource.PlayOneShot(plopSound);
                 information.text = "You have found a cigarette. \nIt weights 0.2 kg.";
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(halfSecond);
+                thisAudioSource.volume = maxVolume;
+                yield return new WaitForSeconds(fourAndAHalfSeconds);
                 information.text = "";
                 break;
 
             case 2:
+                thisAudioSource.volume = quarterVolume;
+                thisAudioSource.PlayOneShot(plopSound);
                 information.text = "You have found a key! \nYou could try to unlock a door with this one.";
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(halfSecond);
+                thisAudioSource.volume = maxVolume;
+                yield return new WaitForSeconds(fourAndAHalfSeconds);
                 information.text = "";
                 break;
+
             case 3:
+                thisAudioSource.volume = quarterVolume;
+                thisAudioSource.PlayOneShot(plopSound);
                 information.text = "You picked up a rock. \nPress G to throw it!\nThrow it wisely!";
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(halfSecond);
+                thisAudioSource.volume = maxVolume;
+                yield return new WaitForSeconds(fourAndAHalfSeconds);
                 information.text = "";
                 break;
 

@@ -439,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b82bc719cf2643b1d6f08cb3b1fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plopSound: {fileID: 8300000, guid: 41d0ea7f8ecfd724889b275ae1166bff, type: 3}
 --- !u!1 &454312918
 GameObject:
   m_ObjectHideFlags: 0

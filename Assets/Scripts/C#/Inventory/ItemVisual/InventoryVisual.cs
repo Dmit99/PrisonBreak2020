@@ -41,14 +41,23 @@ public class InventoryVisual : MonoBehaviour
         }
     }
 
-    public void AddUIItem(Item i)
+    public void AddUIItem(Item it)
     {
-        if (!uiItems[i.name].isInInventory())
+        if (!uiItems[it.name].isInInventory())
         {
             GameObject go = Instantiate(UIItemPrefab, content.transform);
-            go.GetComponentInChildren<Image>().sprite = uiItems[i.name].image;
-            go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = i.name;
-            uiItems[i.name].SetInventoryObj(go);
+            Image[] images = go.GetComponentsInChildren<Image>();
+
+            for (int i = 0; i < images.Length; i++)
+            {
+                if (images[i].name == "Image")
+                {
+                    images[i].sprite = uiItems[it.name].image;
+                }
+            }
+
+            go.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = it.name;
+            uiItems[it.name].SetInventoryObj(go);
         }
     }
 

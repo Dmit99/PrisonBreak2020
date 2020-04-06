@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33757480870566144}
   - component: {fileID: 23905065388122960}
   - component: {fileID: 64217060021097430}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OldWoodenRowboat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 7908316830386988599}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 18, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 4162099290271450}
   m_RootOrder: 0

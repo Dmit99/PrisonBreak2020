@@ -326,7 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Stone
   weight: 0.5
-  image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  image: {fileID: 21300000, guid: 04bc4a121e00db74ca54ee8de468c375, type: 3}
 --- !u!54 &7533858913415232336
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -355,3 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4354aa4db22dc48a74242354753db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plastichit: {fileID: 0}
+  groundhit: {fileID: 0}
+  wallhit: {fileID: 0}
+  audios: {fileID: 0}
